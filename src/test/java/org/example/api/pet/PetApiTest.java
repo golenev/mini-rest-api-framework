@@ -12,13 +12,17 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Timer;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 
 public class PetApiTest {
     @BeforeClass
+
+
     public void prepare() throws IOException {
+
 
         // Читаем конфигурационный файл в System.properties -- простейшее HashMap хранилище
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("my.properties"));
@@ -47,13 +51,16 @@ public class PetApiTest {
      * Простейшая проверка: создаём объект, сохраняем на сервере и проверяем, что при запросе возвращается
      * "тот же" объект
      */
+
     @Test
     public void checkObjectSave() {
+
         Pet pet = new Pet(); // создаём экземпляр POJO объекта Pet
         int id = new Random().nextInt(500000); // просто нужно создать произвольный айди
         String name = "Pet_" + UUID.randomUUID().toString(); // UUID гарантирует уникальность строки
         pet.setId(id);
         pet.setName(name);
+
 
         given()  // часть стандартного синтаксиса BDD. Означает предварительные данные. Иначе говоря ДАНО:
                 .body(pet) // указываем что  помещаем в тело запроса. Поскольку у нас подключен Gson, он преобразуется в JSON
@@ -97,12 +104,21 @@ public class PetApiTest {
 
     }
 
+
+
+
+
     @Test
     public void tetDelete() throws IOException {
+
+
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("my.properties"));
+
         given()
                 .pathParam("petId", System.getProperty("petId"))
             .when()
+                .log()
+                .all()
                 .delete("/pet/{petId}")
             .then()
                 .statusCode(200);
@@ -110,7 +126,9 @@ public class PetApiTest {
                 .pathParam("petId", System.getProperty("petId"))
              .when()
                 .get("/pet/{petId}")
+                .prettyPeek()
              .then()
-                .statusCode(404);
+              .statusCode(404);
+
     }
 }
