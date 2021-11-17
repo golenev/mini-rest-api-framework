@@ -27,9 +27,9 @@ public class StoreApiTest {
     @BeforeClass
     public void prepare() throws IOException {
         order = new Order();
-        id = new Random().nextInt(5000);
-        int petId = new Random().nextInt(3000);
-        int quantity = new Random().nextInt(50);
+        id = new Random().nextInt(10);
+        int petId = new Random().nextInt(10);
+        int quantity = new Random().nextInt(10);
         order.setId(id);
         order.setPetId(petId);
         order.setQuantity(quantity);
@@ -73,22 +73,6 @@ public class StoreApiTest {
         assertEquals(current.getId(), order.getId());
     }
 
-    @Test
-    public void getOrder() {
-
-        Order current =
-                given()
-                        .pathParam("id", order.getId())
-                        .when()
-                        .get("/store/order/{id}")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .body()
-                        .as(Order.class);
-
-        assertEquals(current.getId(), order.getId());
-    }
 
     @Test
     public void orderDelete() {
@@ -106,19 +90,20 @@ public class StoreApiTest {
                 .then()
                 .statusCode(404);
     }
-
-
     @Test
-    public void tryWithMap() {
-        Map inventory =
+    public void getOrder() {
+
+        Order current =
                 given()
+                        .pathParam("id", order.getId())
                         .when()
-                        .get("/store/inventory")
+                        .get("/store/order/{id}")
                         .then()
                         .statusCode(200)
                         .extract()
                         .body()
-                        .as(Map.class);
-        assertTrue(inventory.containsKey("sold"), "нет статуса sold");
+                        .as(Order.class);
+
+        assertEquals(current.getId(), order.getId());
     }
 }
