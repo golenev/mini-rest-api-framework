@@ -1,4 +1,4 @@
-package usersApi;
+package ApiUtils;
 
 public class StringUtils {
     public static StringBuilder createString (StringBuilder one, StringBuilder two){
@@ -21,10 +21,4 @@ public class StringUtils {
         return string;
     }
 
-
-
-
-    public static void main(String[] args) {
-        System.out.println(createString(ConstantForApi.SECTION_POSTS, ConstantForApi.INDEX_FOR_POSTS));
-    }
 }

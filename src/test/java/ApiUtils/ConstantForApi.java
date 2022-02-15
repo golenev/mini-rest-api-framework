@@ -1,4 +1,4 @@
-package usersApi;
+package ApiUtils;
 
 public class ConstantForApi {
     public static final StringBuilder URL = new StringBuilder("https://jsonplaceholder.typicode.com");
