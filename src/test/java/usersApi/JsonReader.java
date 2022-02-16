@@ -47,7 +47,13 @@ public class JsonReader {
     public static String getUsersUrl (int id) {
         return new StringBuilder(getUrl()).append("/").append(getUsersPath()).append("/").append(id).toString();
     }
+    public static String getUsersUrl () {
+        return new StringBuilder(getUrl()).append("/").append(getUsersPath()).toString();
+    }
 
+    public static void main(String[] args) {
+        System.out.println(getUsersUrl());
+    }
 
     public static String getUrl() {
         if (configObject == null)
@@ -64,7 +70,7 @@ public class JsonReader {
     public static String getUsersPath() {
         if (configObject == null)
             prepareConfig();
-        return (String) configObject.get("posts-path");
+        return (String) configObject.get("users-path");
     }
 
 }

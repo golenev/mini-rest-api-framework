@@ -1,12 +1,12 @@
 package usersApi;
 
-public class UserData {
+public class PostsData {
     private String title;
     private String body;
-    private Integer userId;
+    private int userId;
     private int id;
 
-    public UserData(String title, String body, Integer userId, int id) {
+    public PostsData(String title, String body, Integer userId, int id) {
         this.title = title;
         this.body = body;
         this.userId = userId;
@@ -21,7 +21,7 @@ public class UserData {
         return body;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
