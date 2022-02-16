@@ -4,9 +4,9 @@ public class UserData {
     private String title;
     private String body;
     private Integer userId;
-    private Integer id;
+    private int id;
 
-    public UserData(String title, String body, Integer userId, Integer id) {
+    public UserData(String title, String body, Integer userId, int id) {
         this.title = title;
         this.body = body;
         this.userId = userId;
@@ -25,7 +25,7 @@ public class UserData {
         return userId;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 }
