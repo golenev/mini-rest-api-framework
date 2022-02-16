@@ -28,38 +28,38 @@ public class UsersApiTests {
         Response response = (Response) given()
                 .contentType(ContentType.JSON)
                 .when()
-                .contentType(ContentType.JSON)
                 .get("https://jsonplaceholder.typicode.com/posts")
                 .then().log().all()
                 .statusCode(200)
                 .extract();
         List<UserData> users = response.then().extract().body().jsonPath().getList("", UserData.class);
-        List<Integer> sortedList = users.stream().map(x->x.getId()).collect(Collectors.toList());
-               for (Integer i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).getId());
+        List<Integer> listOfIds = users.stream().map(x->x.getId()).collect(Collectors.toList());
+       List<Integer> sortedList = listOfIds.stream().sorted().collect(Collectors.toList());
+        //int i = 0;
+        //listOfIds.stream().sorted().collect(Collectors.toList()).forEach(x ->Assert.assertEquals(x,listOfIds.get(i++)));
+               for (int i = 0; i < listOfIds.size(); i++) {
+                   System.out.println(listOfIds.get(i) + " " + sortedList.get(i));
+                   Assert.assertEquals(listOfIds.get(i) , sortedList.get(i));
+
         }
-                sortedList.stream().sorted().collect(Collectors.toList());
-        for (Integer i = 0; i < sortedList.size(); i++) {
-            System.out.print(sortedList.get(i));
-        }
-        Assert.assertEquals(users.get(4).getId(), sortedList.get(4));
+
+        //Assert.assertEquals(users.get(4).getId(), listOfIds.get(4));
         Assert.assertEquals("application/json; charset=utf-8", response.getContentType());
         Assert.assertEquals(response.getStatusCode(), 200);
-
-
     }
 
     @Test
     public void getRequiredPostRequest() {
         //Specifications.installSpecification(Specifications.requestSpec(ConstantForApi.URL), Specifications.responseSpecOK200());
-       Response response = given()
+       Response response = (Response) given()
                 .contentType(ContentType.JSON)
                 .when()
                 .get("https://jsonplaceholder.typicode.com/posts/99")
                 .then().log().all()
-                //.statusCode(200)
-                .extract()
-                .response();
+                .statusCode(200)
+                .extract().body().jsonPath().getList("", UserData.class);
+       // List<UserData> users = response.then().extract()
+       // System.out.println(users.size());
                 Assert.assertEquals("application/json; charset=utf-8", response.getContentType());
                 Assert.assertEquals(response.getStatusCode(), 200);
     }

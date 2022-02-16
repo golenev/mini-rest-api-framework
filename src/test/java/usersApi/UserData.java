@@ -17,8 +17,6 @@ public class UserData {
         return title;
     }
 
-
-
     public String getBody() {
         return body;
     }
