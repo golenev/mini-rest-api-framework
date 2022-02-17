@@ -1,9 +1,6 @@
-package OtherUtils;
+package utils;
 
 import com.github.javafaker.Faker;
-
-import javax.crypto.spec.PSource;
-import java.util.Random;
 
 public class StringUtils {
 

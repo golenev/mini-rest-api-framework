@@ -1,10 +1,10 @@
-package usersApi;
+package api;
 
-public class ExpectedResultUsersClass {
+public class ExpectedResultPosts {
     private String title;
     private String body;
-    private Integer userId;
-    private Integer id;
+    private int userId;
+    private int id;
 
     public String getTitle() {
         return title;
@@ -14,15 +14,15 @@ public class ExpectedResultUsersClass {
         return body;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public ExpectedResultUsersClass(String title, String body, Integer userId, Integer id) {
+    public ExpectedResultPosts(String title, String body, int userId, int id) {
         this.title = title;
         this.body = body;
         this.userId = userId;

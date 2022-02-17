@@ -1,18 +1,23 @@
-package usersApi;
+package api;
 
-import OtherUtils.StringUtils;
+import models.posts.PostsData;
+import models.usersInfo.UsersData;
+import utils.StringUtils;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static io.restassured.RestAssured.given;
-import static usersApi.JsonReader.*;
-import static usersApi.UtilApi.*;
-public class UsersApiTests {
+import static utils.TestingConfiguration.*;
+import static api.UtilApi.*;
+public class AllApiTests {
 
+    private Response responseGet;
+    private Response responsePost;
+
+    @BeforeMethod
 
 
 
@@ -22,11 +27,11 @@ public class UsersApiTests {
         String url = getPostsUrl();
         Response response = useMethodGet(url);
         response.then().log().all();
-        List<PostsData> users = response.then().extract().body().jsonPath().getList("", PostsData.class);
-        List<Integer> listOfIds = users.stream().map(x->x.getId()).collect(Collectors.toList());
-        List<Integer> sortedList = listOfIds.stream().sorted().collect(Collectors.toList());
-               for (int i = 0; i < listOfIds.size(); i++) {
-                   Assert.assertEquals(listOfIds.get(i) , sortedList.get(i));
+        List<PostsData> posts = response.then().extract().body().jsonPath().getList("", PostsData.class);
+        List<Integer> listOfPostsIds = posts.stream().map(x->x.getId()).collect(Collectors.toList());
+        List<Integer> sortedList = listOfPostsIds.stream().sorted().collect(Collectors.toList());
+               for (int i = 0; i < listOfPostsIds.size(); i++) {
+                   Assert.assertEquals(listOfPostsIds.get(i) , sortedList.get(i));
         }
         Assert.assertEquals("application/json; charset=utf-8", response.getContentType());
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -50,37 +55,26 @@ public class UsersApiTests {
     }
 
     @Test
-    //https://jsonplaceholder.typicode.com/posts/150 404
+        //https://jsonplaceholder.typicode.com/posts/150 404
     public void getNotExistenceResponse() {
         String url = getPostsUrl(150);
         Response response = useMethodGet(url);
         response.then().log().all();
         Assert.assertEquals(response.getStatusCode(), 404);
-
     }
-
 
     @Test
     //https://jsonplaceholder.typicode.com/posts/
     public void postRequestToApi() {
-        Response response = useMethodPost(getPostsUrl());
-        UtilApi.installSpecification(UtilApi.requestSpec(), UtilApi.responseSpecOK201());
-        PostsData postsData = new PostsData(StringUtils.generateRandomString(), StringUtils.generateLastName(), 1, 101);
-        ExpectedResultUsersClass expectedResultUsersClass =  given()
-                .body(postsData)
-                .post(getPostsUrl())
-                .then().log().all()
-                .extract().as(ExpectedResultUsersClass.class);
-
+        PostsData postsDataToSend = new PostsData(StringUtils.generateRandomString(), StringUtils.generateLastName(), 1, 101);
+        Response response = useMethodPost(getPostsUrl(), postsDataToSend);
         Assert.assertEquals(response.getStatusCode(), 201);
-        Assert.assertEquals(postsData.getBody(), expectedResultUsersClass.getBody());
-        Assert.assertEquals(postsData.getTitle(), expectedResultUsersClass.getTitle());
-
-
-
-
+        PostsData postsDataExpected = response
+                .then().log().all()
+                .extract().as( PostsData.class);
+        Assert.assertEquals(postsDataExpected.getBody(), postsDataToSend.getBody());
+        Assert.assertEquals(postsDataExpected.getTitle(), postsDataToSend.getTitle());
     }
-
 
     @Test
     public void getAllUsersRequest() {
@@ -100,9 +94,6 @@ public class UsersApiTests {
         System.out.println(users.get(4).getUsername());
         System.out.println(users.get(4).getEmail());
         System.out.println(users.get(4).getCompany().getBs());
-
-
-
     }
 
     @Test

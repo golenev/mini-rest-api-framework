@@ -1,4 +1,4 @@
-package usersApi;
+package models.posts;
 
 public class PostsData {
     private String title;
@@ -28,5 +28,17 @@ public class PostsData {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "PostsData{" +
+                "title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", userId=" + userId +
+                ", id=" + id +
+                '}';
+    }
+
+
 }
 

@@ -1,18 +1,16 @@
-package usersApi;
+package utils;
 
 
 import java.io.*;
-import java.util.Iterator;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class JsonReader {
+public class TestingConfiguration {
 
     private static final String configPath = "/config.json";
-    private static final String testPath = "/testing-data.json";
+    private static final String testPath = "/testing.json";
     private static JSONObject configObject = null;
     private static JSONObject testingDataObject = null;
 
@@ -21,10 +19,10 @@ public class JsonReader {
     private static void prepareConfig (){
         try {
             JSONParser configParser = new JSONParser();
-            Reader configReader = new InputStreamReader(JsonReader.class.getClass().getResourceAsStream(configPath));
+            Reader configReader = new InputStreamReader(TestingConfiguration.class.getClass().getResourceAsStream(configPath));
             configObject = (JSONObject) configParser.parse(configReader);
             JSONParser testDataParser = new JSONParser();
-            Reader testDataReader = new InputStreamReader(JsonReader.class.getClass().getResourceAsStream(testPath));
+            Reader testDataReader = new InputStreamReader(TestingConfiguration.class.getClass().getResourceAsStream(testPath));
             testingDataObject = (JSONObject) configParser.parse(testDataReader);
 
         } catch (FileNotFoundException ex) {
