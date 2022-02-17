@@ -35,19 +35,19 @@ public class TestingConfiguration {
     }
 
     public static String getPostsUrl (int id) {
-        return new StringBuilder(getUrl()).append("/").append(getPostsPath()).append("/").append(id).toString();
+        return new StringBuilder(getUrl()).append(getPostsPath()).append(id).toString();
     }
 
     public static String getPostsUrl () {
-        return new StringBuilder(getUrl()).append("/").append(getPostsPath()).toString();
+        return new StringBuilder(getUrl()).append(getPostsPath()).toString();
     }
 
     public static String getUsersUrl (int id) {
-        return new StringBuilder(getUrl()).append("/").append(getUsersPath()).append("/").append(id).toString();
+        return new StringBuilder(getUrl()).append(getUsersPath()).append(id).toString();
     }
 
     public static String getUsersUrl () {
-        return new StringBuilder(getUrl()).append("/").append(getUsersPath()).toString();
+        return new StringBuilder(getUrl()).append(getUsersPath()).toString();
     }
 
     public static String getContentTypeFromTestingData(){
@@ -197,8 +197,6 @@ public class TestingConfiguration {
             prepareConfig();
         return (String) configObject.get("users-path");
     }
-
-
 
 }
 

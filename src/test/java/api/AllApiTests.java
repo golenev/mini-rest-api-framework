@@ -17,7 +17,7 @@ public class AllApiTests {
 Response response;
 
     @Test
-    public void getAllPostsRequest() {
+    public void ExecuteAllRequests() {
         response = useMethodGet(getPostsUrl());
         response.then().log().all();
         List<PostsData> posts = response.then().extract().body().jsonPath().getList("", PostsData.class);
@@ -36,8 +36,8 @@ Response response;
         Assert.assertEquals(response.getStatusCode(), 200, "sorry, your status code does not match");
         Assert.assertEquals(user.getUserId(), getExpectedUserIdFromTestingData());
         Assert.assertEquals(user.getId(), getExpectedIdFromTestingData());
-        Assert.assertNotEquals(user.getTitle(), "");
-        Assert.assertNotEquals(user.getBody(), "");
+        Assert.assertNotNull(user.getTitle());
+        Assert.assertNotNull(user.getBody());
 
         response = useMethodGet(getPostsUrl(getRequiredPostsIdFromTestingData()));
         response.then().log().all();
