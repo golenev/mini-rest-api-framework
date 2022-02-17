@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.TestingConfiguration;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import static io.restassured.RestAssured.given;

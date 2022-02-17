@@ -14,8 +14,6 @@ public class TestingConfiguration {
     private static JSONObject configObject = null;
     private static JSONObject testingDataObject = null;
 
-
-
     private static void prepareConfig (){
         try {
             JSONParser configParser = new JSONParser();
@@ -56,6 +54,94 @@ public class TestingConfiguration {
         if (testingDataObject == null)
             prepareConfig();
         return (String) testingDataObject.get("contentType");
+    }
+
+    public static String getLatFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("lat");
+    }
+    public static String getLngFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("lng");
+    }
+    public static String getStreetFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("street");
+    }
+
+    public static String getSuiteFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("suite");
+    }
+
+    public static String getCityFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("city");
+    }
+
+    public static String getZipcodeFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("zipcode");
+    }
+
+    public static String getCompanyNameFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("companyName");
+    }
+
+    public static String getCompanyCatchPhraseFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("companyCatchPhrase");
+    }
+
+    public static String getCompanyBsFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("companyBs");
+    }
+
+    public static int getUserIdFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return Integer.parseInt((String) testingDataObject.get("userId")) ;
+    }
+
+    public static String getUserUserNameFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("userUserName");
+    }
+
+    public static String getUserNameFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("userName");
+    }
+
+    public static String getUserEmailFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("userEmail");
+    }
+
+    public static String getUserPhoneFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("userPhone");
+    }
+
+    public static String getUserWebsiteFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("userWebsite");
     }
 
     public static int getExpectedUserIdFromTestingData(){

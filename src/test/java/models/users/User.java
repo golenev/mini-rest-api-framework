@@ -1,6 +1,7 @@
 package models.users;
 
 import java.util.Objects;
+import static utils.TestingConfiguration.*;
 
 public class User {
 
@@ -70,11 +71,14 @@ public class User {
     }
 
     public static User createExpectedUser (){
-    Geo expectedGeo = new Geo("-31.8129", "62.5342");
-    Address expectedAddress = new Address("Skiles Walks", "Suite 351", "Roscoeview", "33263", expectedGeo);
-    Company expectedCompany = new Company("Keebler LLC", "User-centric fault-tolerant solution", "revolutionize end-to-end systems");
-        return new User(5, "Chelsey Dietrich", "Kamren", "Lucio_Hettinger@annie.ca",
-            expectedAddress, "(254)954-1289", "demarco.info", expectedCompany);
+    Geo expectedGeo = new Geo(getLatFromTestingData(), getLngFromTestingData());
+    Address expectedAddress = new Address(getStreetFromTestingData(), getSuiteFromTestingData(), getCityFromTestingData(),
+            getZipcodeFromTestingData(), expectedGeo);
+    Company expectedCompany = new Company(getCompanyNameFromTestingData(), getCompanyCatchPhraseFromTestingData(),
+            getCompanyBsFromTestingData());
+        return new User(getUserIdFromTestingData(), getUserNameFromTestingData(), getUserUserNameFromTestingData(),
+                getUserEmailFromTestingData(),
+            expectedAddress, getUserPhoneFromTestingData(), getUserWebsiteFromTestingData(), expectedCompany);
 
     }
 }
