@@ -35,9 +35,11 @@ public class TestingConfiguration {
             ex.printStackTrace();
         }
     }
+
     public static String getPostsUrl (int id) {
         return new StringBuilder(getUrl()).append("/").append(getPostsPath()).append("/").append(id).toString();
     }
+
     public static String getPostsUrl () {
         return new StringBuilder(getUrl()).append("/").append(getPostsPath()).toString();
     }
@@ -45,12 +47,58 @@ public class TestingConfiguration {
     public static String getUsersUrl (int id) {
         return new StringBuilder(getUrl()).append("/").append(getUsersPath()).append("/").append(id).toString();
     }
+
     public static String getUsersUrl () {
         return new StringBuilder(getUrl()).append("/").append(getUsersPath()).toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(getUsersUrl());
+    public static String getStreetFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("Street");
+    }
+
+    public static String getSuitFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("Suite");
+    }
+    public static String getCityFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("City");
+    }
+
+    public static String getZipcodeFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("Zipcode");
+    }
+    public static String getLatFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("getLat");
+    }
+    public static String getLngFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("getLng");
+    }
+    public static String getNameFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("Name");
+    }
+
+    public static String getEmailFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("Email");
+    }
+    public static String getBsFromTestingData () {
+        if (testingDataObject == null)
+            prepareConfig();
+        return (String) testingDataObject.get("Bs");
     }
 
     public static String getUrl() {

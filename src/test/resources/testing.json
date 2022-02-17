@@ -1,4 +1,13 @@
 {
   "post-id": 99,
-  "user-id": 20
+  "user-id": 20,
+  "Street": "Skiles Walks",
+  "Suite": "Suite 351",
+  "City": "Roscoeview",
+  "Zipcode": "33263",
+  "getLat": "-31.8129",
+  "getLng": "62.5342",
+  "Name": "Chelsey Dietrich",
+  "Email": "Lucio_Hettinger@annie.ca",
+  "Bs": "revolutionize end-to-end systems"
 }

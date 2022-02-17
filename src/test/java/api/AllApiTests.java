@@ -14,12 +14,6 @@ import static utils.TestingConfiguration.*;
 import static api.UtilApi.*;
 public class AllApiTests {
 
-    private Response responseGet;
-    private Response responsePost;
-
-    @BeforeMethod
-
-
 
     @Test
     public void getAllPostsRequest() {
@@ -78,22 +72,22 @@ public class AllApiTests {
 
     @Test
     public void getAllUsersRequest() {
-
         //https://jsonplaceholder.typicode.com/users
         String url = getUsersUrl();
         Response response = useMethodGet(url);
-        //response.then().log().all();
+        response.then().log().all();
         List<UsersData> users = response.then().extract().body().jsonPath().getList("", UsersData.class);
-        System.out.println(users.get(4).getAddress().getStreet());
-        System.out.println(users.get(4).getAddress().getSuite());
-        System.out.println(users.get(4).getAddress().getCity());
-        System.out.println(users.get(4).getAddress().getZipcode());
-        System.out.println(users.get(4).getAddress().getGeo().getLat());
-        System.out.println(users.get(4).getAddress().getGeo().getLng());
-        System.out.println(users.get(4).getName());
-        System.out.println(users.get(4).getUsername());
-        System.out.println(users.get(4).getEmail());
-        System.out.println(users.get(4).getCompany().getBs());
+
+        Assert.assertEquals(users.get(4).getAddress().getStreet(), "Skiles Walks");
+        Assert.assertEquals(users.get(4).getAddress().getSuite(), "Suite 351");
+        Assert.assertEquals(users.get(4).getAddress().getCity(), "Roscoeview");
+        Assert.assertEquals(users.get(4).getAddress().getZipcode(), "33263");
+        Assert.assertEquals(users.get(4).getAddress().getGeo().getLat(), "-31.8129");
+        Assert.assertEquals(users.get(4).getAddress().getGeo().getLng(), "62.5342");
+        Assert.assertEquals(users.get(4).getName(), "Chelsey Dietrich");
+        Assert.assertEquals(users.get(4).getUsername(), "Kamren");
+        Assert.assertEquals(users.get(4).getEmail(), "Lucio_Hettinger@annie.ca");
+        Assert.assertEquals(users.get(4).getCompany().getBs(), "revolutionize end-to-end systems");
     }
 
     @Test
@@ -101,9 +95,14 @@ public class AllApiTests {
         //https://jsonplaceholder.typicode.com/users/5
         String url = getUsersUrl(5);
         Response response = useMethodGet(url);
+        UsersData user = response.then().extract().body().jsonPath().getObject("", UsersData.class);
         response.then().log().all();
-        //List<UsersData> users = response.then().extract().body().jsonPath().getList("", UsersData.class);
+        UsersData usersData = null;
+
+
+
     }
+
 
 }
 
