@@ -1,12 +1,15 @@
 package models.posts;
 
+import utils.StringUtils;
+import utils.TestingConfiguration;
+
 public class PostsData {
     private String title;
     private String body;
     private int userId;
     private int id;
 
-    public PostsData(String title, String body, Integer userId, int id) {
+    public PostsData(String title, String body, int userId, int id) {
         this.title = title;
         this.body = body;
         this.userId = userId;

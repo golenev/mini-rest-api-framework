@@ -52,53 +52,46 @@ public class TestingConfiguration {
         return new StringBuilder(getUrl()).append("/").append(getUsersPath()).toString();
     }
 
-    public static String getStreetFromTestingData () {
+    public static String getContentTypeFromTestingData(){
         if (testingDataObject == null)
             prepareConfig();
-        return (String) testingDataObject.get("Street");
+        return (String) testingDataObject.get("contentType");
     }
 
-    public static String getSuitFromTestingData () {
+    public static int getExpectedUserIdFromTestingData(){
         if (testingDataObject == null)
             prepareConfig();
-        return (String) testingDataObject.get("Suite");
-    }
-    public static String getCityFromTestingData () {
-        if (testingDataObject == null)
-            prepareConfig();
-        return (String) testingDataObject.get("City");
+        return Integer.parseInt((String) testingDataObject.get("expectedUserId"));
     }
 
-    public static String getZipcodeFromTestingData () {
+    public static int getExpectedIdFromTestingData(){
         if (testingDataObject == null)
             prepareConfig();
-        return (String) testingDataObject.get("Zipcode");
-    }
-    public static String getLatFromTestingData () {
-        if (testingDataObject == null)
-            prepareConfig();
-        return (String) testingDataObject.get("getLat");
-    }
-    public static String getLngFromTestingData () {
-        if (testingDataObject == null)
-            prepareConfig();
-        return (String) testingDataObject.get("getLng");
-    }
-    public static String getNameFromTestingData () {
-        if (testingDataObject == null)
-            prepareConfig();
-        return (String) testingDataObject.get("Name");
+        return Integer.parseInt((String) testingDataObject.get("expectedId"));
     }
 
-    public static String getEmailFromTestingData () {
+    public static int getFieldUserIdForConstructorTestingData(){
         if (testingDataObject == null)
             prepareConfig();
-        return (String) testingDataObject.get("Email");
+        return Integer.parseInt((String) testingDataObject.get("fieldUserIdFromConstructor"));
     }
-    public static String getBsFromTestingData () {
+
+    public static int getFieldIdForConstructorTestingData(){
         if (testingDataObject == null)
             prepareConfig();
-        return (String) testingDataObject.get("Bs");
+        return Integer.parseInt((String) testingDataObject.get("fieldIdFromConstructor"));
+    }
+
+    public static int getRequiredPostsIdFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return Integer.parseInt((String) testingDataObject.get("requiredPostsId"));
+    }
+
+    public static int getRequiredUserIdFromTestingData(){
+        if (testingDataObject == null)
+            prepareConfig();
+        return Integer.parseInt((String) testingDataObject.get("requiredUserId"));
     }
 
     public static String getUrl() {
@@ -118,6 +111,8 @@ public class TestingConfiguration {
             prepareConfig();
         return (String) configObject.get("users-path");
     }
+
+
 
 }
 

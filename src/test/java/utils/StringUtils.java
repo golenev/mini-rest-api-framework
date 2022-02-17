@@ -10,16 +10,28 @@ public class StringUtils {
       return (faker.name().nameWithMiddle());
    }
 
-   public static String generateLastName() {
+   public static String insertTitleText() {
       return (faker.name().lastName());
+   }
+
+   public static String insertTitleText(String title) {
+      return title;
    }
 
    public static String generateNickName() {
       return (faker.name().username());
    }
 
+   public static String insertBodyText(String body) {
+      return body;
+   }
+
+   public static String insertBodyText() {
+      return generateNickName();
+   }
+
    public static void main(String[] args) {
-      System.out.println(generateRandomString());
+      System.out.println(insertBodyText());
    }
 
 }
