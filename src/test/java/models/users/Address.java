@@ -37,6 +37,7 @@ public class Address {
         return geo;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,5 +49,16 @@ public class Address {
     @Override
     public int hashCode() {
         return Objects.hash(street, suite, city, zipcode, geo);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", suite='" + suite + '\'' +
+                ", city='" + city + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", geo=" + geo +
+                '}';
     }
 }

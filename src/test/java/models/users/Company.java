@@ -38,4 +38,13 @@ public class Company {
     public int hashCode() {
         return Objects.hash(name, catchPhrase, bs);
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", catchPhrase='" + catchPhrase + '\'' +
+                ", bs='" + bs + '\'' +
+                '}';
+    }
 }

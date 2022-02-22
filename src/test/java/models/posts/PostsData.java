@@ -6,10 +6,10 @@ import utils.TestingConfiguration;
 public class PostsData {
     private String title;
     private String body;
-    private int userId;
-    private int id;
+    private long userId;
+    private long id;
 
-    public PostsData(String title, String body, int userId, int id) {
+    public PostsData(String title, String body, long userId, long id) {
         this.title = title;
         this.body = body;
         this.userId = userId;
@@ -24,11 +24,11 @@ public class PostsData {
         return body;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

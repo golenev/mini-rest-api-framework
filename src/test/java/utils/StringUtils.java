@@ -1,29 +1,21 @@
 package utils;
 
+import api.ContentType;
+import api.StatusCode;
 import com.github.javafaker.Faker;
+import org.testng.Assert;
 
 public class StringUtils {
 
    public static final Faker faker = new Faker();
 
-   public static String generateRandomString() {
-      return (faker.name().nameWithMiddle());
-   }
 
    public static String insertTitleText() {
       return (faker.name().lastName());
    }
 
-   public static String insertTitleText(String title) {
-      return title;
-   }
-
    public static String generateNickName() {
       return (faker.name().username());
-   }
-
-   public static String insertBodyText(String body) {
-      return body;
    }
 
    public static String insertBodyText() {

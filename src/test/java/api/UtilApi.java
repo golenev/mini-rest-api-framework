@@ -4,9 +4,12 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import models.posts.PostsData;
+import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class UtilApi {
@@ -21,7 +24,7 @@ public class UtilApi {
     }
 
     public static Response useMethodPost (String url, Object body)  {
-        return given().contentType(ContentType.JSON).body(body).when().post(url);
+        return prepareResponse().contentType(ContentType.JSON).body(body).when().post(url);
     }
 
 }

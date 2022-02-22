@@ -5,7 +5,7 @@ import static utils.TestingConfiguration.*;
 
 public class User {
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ public class User {
         return company;
     }
 
-    public User(int id, String name, String username, String email, Address address, String phone, String website, Company company) {
+    public User(long id, String name, String username, String email, Address address, String phone, String website, Company company) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -48,7 +48,7 @@ public class User {
         this.company = company;
     }
 
-    private int id;
+    private long id;
     private String name;
     private String username;
     private String email;
@@ -70,16 +70,18 @@ public class User {
         return Objects.hash(id, name, username, email, address, phone, website, company);
     }
 
-    public static User createExpectedUser (){
-    Geo expectedGeo = new Geo(getLatFromTestingData(), getLngFromTestingData());
-    Address expectedAddress = new Address(getStreetFromTestingData(), getSuiteFromTestingData(), getCityFromTestingData(),
-            getZipcodeFromTestingData(), expectedGeo);
-    Company expectedCompany = new Company(getCompanyNameFromTestingData(), getCompanyCatchPhraseFromTestingData(),
-            getCompanyBsFromTestingData());
-        return new User(getUserIdFromTestingData(), getUserNameFromTestingData(), getUserUserNameFromTestingData(),
-                getUserEmailFromTestingData(),
-            expectedAddress, getUserPhoneFromTestingData(), getUserWebsiteFromTestingData(), expectedCompany);
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                ", phone='" + phone + '\'' +
+                ", website='" + website + '\'' +
+                ", company=" + company +
+                '}';
     }
 }
 
