@@ -28,22 +28,18 @@ Response response;
         Assert.assertEquals(postsFromServer, postsSorted, "sorry, fields of your object are not equals");
         Assert.assertEquals(ContentType.JSON.getOption(), response.getContentType());
         Assert.assertEquals(response.getStatusCode(), StatusCode.OK.getOption(), "sorry, your status code does not match");
-
         response = useMethodGet(getPostsUrl(getTestDataAsLong("expectedId")));
         response.then().log().all();
         Assert.assertEquals(ContentType.JSON.getOption(), response.getContentType());
-
         PostsData user = ListUtils.parseJsonToObject(response, "", PostsData.class);
         Assert.assertEquals(response.getStatusCode(), StatusCode.OK.getOption(), "sorry, your status code does not match");
         Assert.assertEquals(user.getUserId(), getTestDataAsLong("expectedUserId"), "sorry, your UserIds does not match");
         Assert.assertEquals(user.getId(), getTestDataAsLong("expectedId"), "sorry, Ids does not match");
         Assert.assertNotNull(user.getTitle(),"sorry, your title is null");
         Assert.assertNotNull(user.getBody(),"sorry, your body is null");
-
         response = useMethodGet(getPostsUrl(getTestDataAsLong("requiredPostsId")));
         response.then().log().all();
         Assert.assertEquals(response.getStatusCode(), StatusCode.NOT_FOUND.getOption(), "sorry, your status code does not match");
-
         PostsData postsDataToSend = new PostsData(StringUtils.insertBodyText(), StringUtils.insertTitleText(),
                getTestDataAsLong("fieldUserIdFromConstructor"),
                 getTestDataAsLong("fieldIdFromConstructor"));
@@ -54,19 +50,15 @@ Response response;
                 .extract().as(PostsData.class);
         Assert.assertEquals(postsDataExpected.getBody(), postsDataToSend.getBody(), "sorry, your posts does not match");
         Assert.assertEquals(postsDataExpected.getTitle(), postsDataToSend.getTitle(), "sorry, your posts titles does not match");
-
         response = useMethodGet(getUsersUrl());
         response.then().log().all();
         List<User> users = ListUtils.parseJsonToList(response, "", User.class);
         User actualUser = users.stream().filter(u -> u.getId()==getTestDataAsLong("requiredUserId")).findFirst().get();
         Assert.assertEquals(actualUser, getUserFromResources(), "sorry, your users does not match");
-
         response = useMethodGet(getUsersUrl((int) getTestDataAsLong("requiredUserId")));
         User userFromServer = ListUtils.parseJsonToObject(response,"", User.class);
         response.then().log().all();
         Assert.assertEquals(userFromServer, getUserFromResources(), "sorry, your users does not match");
-
         }
-
 }
 
